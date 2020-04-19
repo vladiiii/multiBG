@@ -29,11 +29,14 @@ function draw() {
   background(0, 0, 0);
   if (rain) {
     rainRun();
+    
   }
   if (firework) {
     fireworkRun();
+    
   }if(boid){
     boidRun();
+    
   }
   
 }
@@ -52,6 +55,8 @@ function rainBtn() {
     rain = false;
   else {
     rain = true;
+    firework = false;
+    boid = false;
   }
 }
 
@@ -224,6 +229,8 @@ function fireworkBtn() {
     firework = false;
   else {
     firework = true;
+    boid = false;
+    rain = false;
   }
 }
 //end
@@ -237,6 +244,8 @@ function boidBtn() {
     boid = false;
   else {
     boid = true;
+    rain = false;
+    firework = false;
   }
 }
 
@@ -248,7 +257,7 @@ class Boid {
     this.acceleration = createVector();
     this.maxForce = 1;
     this.maxSpeed = 4;
-    this.r = 3.0;
+    this.r = 1.5;
   }
 
   edges() {
@@ -371,9 +380,9 @@ class Boid {
     translate(this.position.x, this.position.y);
     rotate(theta);
     beginShape();
-    vertex(0, -3 * 2);
-    vertex(-3, 3 * 2);
-    vertex(3, 3 * 2);
+    vertex(0, -this.r * 2);
+    vertex(-this.r, this.r * 2);
+    vertex(this.r, this.r * 2);
     endShape(CLOSE);
     pop();
     //point(this.position.x, this.position.y);
