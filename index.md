@@ -9,7 +9,7 @@
 <body>
     <input id="rainbtn" type="submit" name="button" value="Rain" onclick="rainBtn()"/>
     <input id="fireworkbtn" type="submit" name="button" value="Fireworks" onclick="fireworkBtn()"/>
-    <input id="boidsbtn" type="submit" name="button" value="Fireworks" onclick=")"/>
+    <input id="boidsbtn" type="submit" name="button" value="Flock" onclick="boidBtn()"/>
     <script src="main.js"></script>
     <script src="p5.min.js"></script>
 </body>

@@ -1,8 +1,8 @@
 var drops = []; //rain array
 var fireworks = []; //fireworks array
 var gravity;
-const flock = [];  //boids array
-let alignSlider, cohesionSlider, separationSlider;
+const flock = []; //boids array
+
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -20,9 +20,6 @@ function setup() {
   }
 
   //boids setup
-  alignSlider = createSlider(0, 2, 1, 0.1);
-  cohesionSlider = createSlider(0, 2, 1, 0.1);
-  separationSlider = createSlider(0, 2, 1, 0.1);
   for (let i = 0; i < 200; i++) {
     flock.push(new Boid());
   }
@@ -35,7 +32,10 @@ function draw() {
   }
   if (firework) {
     fireworkRun();
+  }if(boid){
+    boidRun();
   }
+  
 }
 
 //addaptive canvas
@@ -229,6 +229,17 @@ function fireworkBtn() {
 //end
 
 //boids start
+
+var boid = false;
+
+function boidBtn() {
+  if (boid)
+    boid = false;
+  else {
+    boid = true;
+  }
+}
+
 class Boid {
   constructor() {
     this.position = createVector(random(width), random(height));
@@ -237,6 +248,7 @@ class Boid {
     this.acceleration = createVector();
     this.maxForce = 1;
     this.maxSpeed = 4;
+    this.r = 3.0;
   }
 
   edges() {
@@ -335,9 +347,9 @@ class Boid {
     let cohesion = this.cohesion(boids);
     let separation = this.separation(boids);
 
-    alignment.mult(alignSlider.value());
-    cohesion.mult(cohesionSlider.value());
-    separation.mult(separationSlider.value());
+    alignment.mult(1);  //alignSlider.value()
+    cohesion.mult(1);  //cohesionSlider.value()
+    separation.mult(1);  //separationSlider.value()
 
     this.acceleration.add(alignment);
     this.acceleration.add(cohesion);
@@ -353,7 +365,26 @@ class Boid {
 
   show() {
     strokeWeight(8);
-    stroke(255);
-    point(this.position.x, this.position.y);
+    stroke(0, 127, 89);
+    var theta = this.velocity.heading() + radians(90);
+    push();
+    translate(this.position.x, this.position.y);
+    rotate(theta);
+    beginShape();
+    vertex(0, -3 * 2);
+    vertex(-3, 3 * 2);
+    vertex(3, 3 * 2);
+    endShape(CLOSE);
+    pop();
+    //point(this.position.x, this.position.y);
+  }
+}
+
+function boidRun() {
+  for (let boid of flock) {
+    boid.edges();
+    boid.flock(flock);
+    boid.update();
+    boid.show();
   }
 }
