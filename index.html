@@ -7,9 +7,14 @@
     <title>Multi Background</title>
 </head>
 <body>
-    <input id="rainbtn" type="submit" name="button" value="Rain" onclick="rainBtn()"/>
-    <input id="fireworkbtn" type="submit" name="button" value="Fireworks" onclick="fireworkBtn()"/>
-    <input id="boidsbtn" type="submit" name="button" value="Flock" onclick="boidBtn()"/>
+    <div class='all'>
+        <h1>Press A Button</h1>
+        <div class='buttons'>
+            <button class="btn draw meet" id="rainbtn" type="submit" name="button" value="Rain" onclick="rainBtn()"/>Rain</button>
+            <button class="btn draw meet" id="fireworkbtn" type="submit" name="button" value="Fireworks" onclick="fireworkBtn()"/>Fireworks</button>
+            <button class="btn draw meet" id="boidsbtn" type="submit" name="button" value="Flock" onclick="boidBtn()"/>Flock</button>
+        </div>
+    </div>
     <script src="main.js"></script>
     <script src="p5.min.js"></script>
 </body>

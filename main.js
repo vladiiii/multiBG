@@ -29,16 +29,17 @@ function draw() {
   background(0, 0, 0);
   if (rain) {
     rainRun();
-    
+
   }
   if (firework) {
     fireworkRun();
-    
-  }if(boid){
-    boidRun();
-    
+
   }
-  
+  if (boid) {
+    boidRun();
+
+  }
+
 }
 
 //addaptive canvas
@@ -82,7 +83,7 @@ function Drop() {
     var thick = map(this.z, 0, 20, 1, 5);
     strokeWeight(thick);
     //stroke(138, 43, 226);
-    stroke(0, 127, 89);
+    stroke(41, 171, 135);
     line(this.x, this.y, this.x, this.y + this.len);
   };
 }
@@ -138,11 +139,11 @@ function Particle(x, y, hu, firework) {
     //colorMode(HSB);
 
     if (!this.firework) {
-      strokeWeight(2);
-      stroke(0, 127, 89, this.lifespan);
+      strokeWeight(5);
+      stroke(41, 171, 135, this.lifespan);
     } else {
-      strokeWeight(4);
-      stroke(0, 127, 89);
+      strokeWeight(3);
+      stroke(41, 171, 135);
     }
 
     point(this.pos.x, this.pos.y);
@@ -256,7 +257,7 @@ class Boid {
     this.velocity.setMag(random(2, 4));
     this.acceleration = createVector();
     this.maxForce = 1;
-    this.maxSpeed = 4;
+    this.maxSpeed = 5;
     this.r = 1.5;
   }
 
@@ -326,7 +327,7 @@ class Boid {
   }
 
   cohesion(boids) {
-    let perceptionRadius = 100;
+    let perceptionRadius = 90;
     let steering = createVector();
     let total = 0;
     for (let other of boids) {
@@ -356,10 +357,6 @@ class Boid {
     let cohesion = this.cohesion(boids);
     let separation = this.separation(boids);
 
-    alignment.mult(1);  //alignSlider.value()
-    cohesion.mult(1);  //cohesionSlider.value()
-    separation.mult(1);  //separationSlider.value()
-
     this.acceleration.add(alignment);
     this.acceleration.add(cohesion);
     this.acceleration.add(separation);
@@ -373,8 +370,8 @@ class Boid {
   }
 
   show() {
-    strokeWeight(8);
-    stroke(0, 127, 89);
+    strokeWeight(5);
+    stroke(41, 171, 135);
     var theta = this.velocity.heading() + radians(90);
     push();
     translate(this.position.x, this.position.y);
@@ -385,7 +382,7 @@ class Boid {
     vertex(this.r, this.r * 2);
     endShape(CLOSE);
     pop();
-    //point(this.position.x, this.position.y);
+
   }
 }
 

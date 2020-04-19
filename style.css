@@ -1,4 +1,107 @@
-html, body{
+html,
+body {
     padding: 0;
     margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+h1 {
+    margin: 0;
+    font-family: Chava;
+    font-size: 3rem;
+    text-align: center;
+    color: #29AB87;
+}
+.all{
+  /*border: 1px solid white;*/
+  height: 150px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    margin: 1em;
+    padding: 1em 2em;
+    box-shadow: inset 0 0 0 2px #29AB87;
+    color: #29AB87;
+    font-family: Chava;
+    font-size: inherit;
+    font-weight: 700;
+    position: relative;
+    vertical-align: middle;
+  }
+  button::before, button::after {
+    box-sizing: inherit;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .draw {
+    -webkit-transition: color 0.25s;
+    transition: color 0.25s;
+  }
+  .draw::before, .draw::after {
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+  }
+  .draw::before {
+    top: 0;
+    left: 0;
+  }
+  .draw::after {
+    bottom: 0;
+    right: 0;
+  }
+  .draw:hover {
+    color: #60daaa;
+  }
+  .draw:hover::before, .draw:hover::after {
+    width: 100%;
+    height: 100%;
+  }
+  .draw:hover::before {
+    border-top-color: #60daaa;
+    border-right-color: #60daaa;
+    -webkit-transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+    transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+  }
+  .draw:hover::after {
+    border-bottom-color: #60daaa;
+    border-left-color: #60daaa;
+    -webkit-transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+    transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+  }
+  
+  .meet:hover {
+    color: white;
+  }
+  .meet::after {
+    top: 0;
+    left: 0;
+  }
+  .meet:hover::before {
+    border-top-color: white;
+    border-right-color: white;
+  }
+  .meet:hover::after {
+    border-bottom-color: white;
+    border-left-color: white;
+    -webkit-transition: width 0.25s ease-out 0.25s;
+    transition: width 0.25s ease-out 0.25s;
+  }
+  .buttons {
+    isolation: isolate;
+  }
+  
